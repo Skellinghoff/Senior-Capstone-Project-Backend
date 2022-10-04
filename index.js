@@ -13,7 +13,7 @@ const corsOptions = {
 };
 app.use(cors(corsOptions));
 
-mongoose.connect('mongodb+srv://mytechmap:SCPFall2022@cluster0.01a729l.mongodb.net/?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://mytechmap:SCPFall2022@cluster0.8p9a4sk.mongodb.net/?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
