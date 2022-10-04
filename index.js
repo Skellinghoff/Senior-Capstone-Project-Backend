@@ -8,12 +8,12 @@ const app = express();
 const port = 80;
 
 const corsOptions = {
-    origin: 'https://mystifying-johnson-d35d1f.netlify.app',
+    origin: 'https://mytechmap.netlify.app/',
     credentials: true,
 };
 app.use(cors(corsOptions));
 
-mongoose.connect('mongodb+srv://mongouser:mongouser@cluster0.c4yrp.mongodb.net/myFirstDatabase?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://mytechmap:SCPFall2022@cluster0.01a729l.mongodb.net/?retryWrites=true&w=majority',
     {
         useNewUrlParser: true,
         useUnifiedTopology: true
