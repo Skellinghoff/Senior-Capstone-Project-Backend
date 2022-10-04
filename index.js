@@ -37,4 +37,8 @@ app.get('/details', async (req, res) => {
     res.send(user);
 });
 
+app.get('/', (req, res) => { 
+    res.send('Hello from Express!')
+});
+
 app.listen(port, () => console.log(`Hello world app listening on port ${port}!`))
