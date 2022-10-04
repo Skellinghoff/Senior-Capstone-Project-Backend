@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 const userModel = require("./models");
 
 const app = express();
-const port = 80;
+const port = 5000;
 
 const corsOptions = {
     origin: 'https://mytechmap.netlify.app/',
