@@ -6,7 +6,6 @@ const userModel = require("./models");
 require('dotenv').config();
 
 const app = express();
-const port = 3000;
 
 const corsOptions = {
     origin: 'https://mytechmap.netlify.app/',
@@ -41,4 +40,4 @@ app.get('/', (req, res) => {
     res.send('Hello from Express!')
 });
 
-app.listen(port, () => console.log(`Hello world app listening on port ${port}!`))
+app.listen(process.env.PORT || 50000, () => console.log(`Hello world app listening on port ${port}!`))
