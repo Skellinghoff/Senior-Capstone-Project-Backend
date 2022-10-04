@@ -33,7 +33,13 @@ db.once("open", function () {
 
 app.get('/details', async (req, res) => {
     // const user = await userModel.findOne({id: 123});
-    res.send("Details");
+    res.send({
+        "employees":[
+          {"firstName":"John", "lastName":"Doe"},
+          {"firstName":"Anna", "lastName":"Smith"},
+          {"firstName":"Peter", "lastName":"Jones"}
+        ]
+        });
 });
 
 app.get('/', (req, res) => { 
