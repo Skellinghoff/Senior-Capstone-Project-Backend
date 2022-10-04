@@ -6,7 +6,7 @@ const userModel = require("./models");
 require('dotenv').config();
 
 const app = express();
-const port = 5000;
+const port = 3000;
 
 const corsOptions = {
     origin: 'https://mytechmap.netlify.app/',
