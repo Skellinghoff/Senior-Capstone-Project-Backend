@@ -21,9 +21,6 @@ MongoClient.connect(process.env.MYTECHMAP_DB_URI, {
         app.listen(port, () => {
             console.log(`listening on port ${port}`);
         });
-        app.get('/', (req, res) => {
-            res.send('Hello from Express!');
-        });
     });
 
 const db = mongoose.connection;

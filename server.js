@@ -12,7 +12,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/v1/markers', markers);
-app.use('/', (req, res) => {
+app.get('/', (req, res) => {
     res.send('Hello from Express!');
 });
 app.use('*', (req, res) => {
