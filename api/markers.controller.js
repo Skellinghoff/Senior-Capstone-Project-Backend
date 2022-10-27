@@ -8,12 +8,12 @@ export default class MarkersController {
         const page = req.query.page ? parseInt(req.query.page, 10) : 0;
 
         let filters = {};
-        if (req.query.cuisine) {
-            filters.cuisine = req.query.cuisine;
+        if (req.query.category) {
+            filters._category = req.query.category;
         } else if (req.query.zipcode) {
             filters.zipcode = req.query.zipcode;
         } else if (req.query.name) {
-            filters.name = req.query.name;
+            filters._name = req.query.name;
         }
 
         const { markersList, totalNumMarkers } =

@@ -25,10 +25,10 @@ export default class MarkersDAO {
     } = {}) {
         let query;
         if (filters) {
-            if ('name' in filters) {
-                query = { $text: { $search: filters['name'] } };
-            } else if ('cuisine' in filters) {
-                query = { cuisine: { $eq: filters['cuisine'] } };
+            if ('_category' in filters) {
+                query = { _category: { $eq: filters['_category'] } };
+            } else if ('_name' in filters) {
+                query = { $text: { $search: filters['_name'] } };
             } else if ('zipcode' in filters) {
                 query = { 'address.zipcode': { $eq: filters['zipcode'] } };
             }
