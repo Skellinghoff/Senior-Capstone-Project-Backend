@@ -43,6 +43,10 @@ export default class MarkersDAO {
             return { markersList: [], totalNumMarkers: 0 };
         }
 
+        if (page === -1) {
+            markersPerPage = 0;
+        }
+
         const displayCursor = cursor
             .limit(markersPerPage)
             .skip(markersPerPage * page);
@@ -65,34 +69,6 @@ export default class MarkersDAO {
                 {
                     $match: {
                         _id: new ObjectId(id),
-                    },
-                },
-                {
-                    $lookup: {
-                        from: 'reviews',
-                        let: {
-                            id: '$_id',
-                        },
-                        pipeline: [
-                            {
-                                $match: {
-                                    $expr: {
-                                        $eq: ['$marker_id', '$$id'],
-                                    },
-                                },
-                            },
-                            {
-                                $sort: {
-                                    date: -1,
-                                },
-                            },
-                        ],
-                        as: 'reviews',
-                    },
-                },
-                {
-                    $addFields: {
-                        reviews: '$reviews',
                     },
                 },
             ];
