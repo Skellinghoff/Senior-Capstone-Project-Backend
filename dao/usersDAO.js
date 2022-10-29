@@ -35,12 +35,12 @@ export default class UsersDAO {
         }
     }
 
-    static async getUserById(id) {
+    static async getUserById(email) {
         try {
             const pipeline = [
                 {
                     $match: {
-                        _id: new ObjectId(id),
+                        email: email,
                     },
                 },
                 {

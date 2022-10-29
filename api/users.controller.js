@@ -18,8 +18,8 @@ export default class UsersController {
     }
     static async apiGetUserById(req, res, next) {
         try {
-            let id = req.params.id || {};
-            let user = await UsersDAO.getUserById(id);
+            let email = req.body.email || {};
+            let user = await UsersDAO.getUserById(email);
             if (!user) {
                 res.status(404).json({ error: 'Not found' });
                 return;
