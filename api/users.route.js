@@ -13,7 +13,7 @@ function isAuthenticated(req, res, next) {
 }
 
 router.route('/id').get(isAuthenticated, UsersCtrl.azureGetId);
-router.route('/id/find').get(UsersCtrl.apiGetUserById);
+router.route('/find').get(UsersCtrl.apiGetUserByEmail);
 router.route('/profile').get(isAuthenticated, UsersCtrl.azureGetProfile);
 
 export default router;

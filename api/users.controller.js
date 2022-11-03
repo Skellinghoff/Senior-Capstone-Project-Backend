@@ -16,9 +16,10 @@ export default class UsersController {
             next(error);
         }
     }
-    static async apiGetUserById(req, res, next) {
+    static async apiGetUserByEmail(req, res, next) {
         try {
-            let email = req.body.email || {};
+            let email = req.query.email || {};
+            console.log(email);
             let user = await UsersDAO.getUserById(email);
             if (!user) {
                 res.status(404).json({ error: 'Not found' });
