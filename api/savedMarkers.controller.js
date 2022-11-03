@@ -20,14 +20,14 @@ export default class SavedMarkersController {
 
     static async apiDeleteSavedMarker(req, res, next) {
         try {
-            const savedMarkerId = req.query.id
+            const markerId = req.body.marker_id
             const userId = req.body.user_id
-            console.log(savedMarkerId)
+            console.log(markerId)
             const reviewResponse = await SavedMarkersDAO.deleteSavedMarker(
-                savedMarkerId,
+                markerId,
                 userId,
             )
-            res.json({ status: "success" })
+            res.json(reviewResponse)
         } catch (e) {
             res.status(500).json({ error: e.message })
         }

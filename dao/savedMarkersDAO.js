@@ -37,17 +37,17 @@ export default class SavedMarkersDAO {
         }
     }
 
-    static async deleteSavedMarker(userId, markerId) {
+    static async deleteSavedMarker(markerId, userId) {
 
         try {
             const deleteResponse = await savedMarkers.deleteOne({
-                user_id: ObjectId(userId),
-                marker_id: ObjectId(markerId),
+                "user_id": ObjectId(userId),
+                "marker_id": ObjectId(markerId),
             })
 
             return deleteResponse
         } catch (e) {
-            console.error(`Unable to save marker: ${e}`)
+            console.error(`Unable to delete marker: ${e}`)
             return { error: e }
         }
     }
