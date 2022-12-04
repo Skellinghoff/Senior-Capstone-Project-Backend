@@ -35,7 +35,7 @@ export default class MarkersDAO {
         }
 
         let cursor;
-
+        console.log('query');
         try {
             cursor = await markers.find(query);
         } catch (e) {
@@ -68,7 +68,7 @@ export default class MarkersDAO {
             const pipeline = [
                 {
                     $match: {
-                        _id: new ObjectId(id),
+                        id: id,
                     },
                 },
             ];

@@ -14,7 +14,11 @@ function isAuthenticated(req, res, next) {
 
 router.route('/id').get(isAuthenticated, UsersCtrl.azureGetId);
 // router.route('/find').get(UsersCtrl.apiGetUserByEmail);
-router.route('/username').get(UsersCtrl.apiGetUserByUsername);
+router.route('/username/:username').get(UsersCtrl.apiGetUserByUsername);
+router.route('/addRegisteredMarker').post(UsersCtrl.apiAddRegisteredMarker);
+router.route('/removeRegisteredMarker').post(UsersCtrl.apiRemoveRegisteredMarker);
+router.route('/addFavoriteMarker').post(UsersCtrl.apiAddFavoriteMarker);
+router.route('/removeFavoriteMarker').post(UsersCtrl.apiRemoveFavoriteMarker);
 router.route('/profile').get(isAuthenticated, UsersCtrl.azureGetProfile);
 
 export default router;

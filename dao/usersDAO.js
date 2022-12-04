@@ -22,7 +22,7 @@ export default class UsersDAO {
         try {
             const userDoc = {
                 name: user.name,
-                email: user.preferred_username,
+                email: user.email,
                 password: user.password,
                 registerd: [],
                 favorites: [],
@@ -41,6 +41,7 @@ export default class UsersDAO {
     // get user by username and use the users favorites array to get the favorited markers from the markers collection and use the users registered array to get the registered markers from the markers collection
     // return the user and the favorited and registered marker
     static async getUserByUsername(username) {
+        console.log('username', username);
         try {
             const pipeline = [
                 {
@@ -59,7 +60,7 @@ export default class UsersDAO {
                             {
                                 $match: {
                                     $expr: {
-                                        $in: ['$_id', '$$favorites'],
+                                        $in: ['$id', '$$favorites'],
                                     },
                                 },
                             },
@@ -78,7 +79,7 @@ export default class UsersDAO {
                             {
                                 $match: {
                                     $expr: {
-                                        $in: ['$_id', '$$registered'],
+                                        $in: ['$id', '$$registered'],
                                     },
                                 },
                             },
@@ -94,34 +95,11 @@ export default class UsersDAO {
         }
     }
 
-    static async addRegisteredMarker(userId, markerId) {
-        try {
-            return await users.updateOne(
-                { email: userId },
-                { $addToSet: { registered: markerId } }
-            );
-        } catch (err) {
-            console.error(`Unable to add registered marker: ${err}`);
-            return { error: err };
-        }
-    }
-
-    static async deleteRegisteredMarker(markerId, userId) {
-        try {
-            return await users.updateOne(
-                { email: userId },
-                { $pull: { registered: markerId } }
-            );
-        } catch (err) {
-            console.error(`Unable to delete registered marker: ${err}`);
-            return { error: err };
-        }
-    }
-
+    // add a marker to the users favorites array
     static async addFavoriteMarker(userId, markerId) {
         try {
             return await users.updateOne(
-                { email: userId },
+                { id: userId },
                 { $addToSet: { favorites: markerId } }
             );
         } catch (err) {
@@ -130,15 +108,44 @@ export default class UsersDAO {
         }
     }
 
-    static async deleteFavoriteMarker(markerId, userId) {
+    // remove a marker from the users favorites array
+    static async removeFavoriteMarker(userId, markerId) {
         try {
             return await users.updateOne(
-                { email: userId },
+                { id: userId },
                 { $pull: { favorites: markerId } }
             );
         } catch (err) {
-            console.error(`Unable to delete favorite marker: ${err}`);
+            console.error(`Unable to remove favorite marker: ${err}`);
             return { error: err };
         }
     }
+
+    // add a marker to the users registered array
+    static async addRegisteredMarker(userId, markerId) {
+        try {
+            return await users.updateOne(
+                { id: userId },
+                { $addToSet: { registered: markerId } }
+            );
+        } catch (err) {
+            console.error(`Unable to add registered marker: ${err}`);
+            return { error: err };
+        }
+    }
+
+    // remove a marker from the users registered array
+    static async removeRegisteredMarker(userId, markerId) {
+        try {
+            return await users.updateOne(
+                { id: userId },
+                { $pull: { registered: markerId } }
+            );
+        } catch (err) {
+            console.error(`Unable to remove registered marker: ${err}`);
+            return { error: err };
+        }
+    }
+
+
 }
