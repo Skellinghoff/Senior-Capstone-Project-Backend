@@ -31,4 +31,20 @@ export default class UsersController {
             res.status(500).json({ error: error });
         }
     }
+
+    static async apiGetUserByUsernmae(req, res, next) {
+        try {
+            let username = req.query.username || {};
+            console.log(username);
+            let user = await UsersDAO.getUserById(username);
+            if (!user) {
+                res.status(404).json({ error: 'Not found' });
+                return;
+            }
+            res.json(user);
+        } catch (error) {
+            console.log(`api, ${error}`);
+            res.status(500).json({ error: error });
+        }
+    }
 }
