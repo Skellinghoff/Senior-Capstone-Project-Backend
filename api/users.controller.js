@@ -20,7 +20,7 @@ export default class UsersController {
         try {
             let email = req.query.email || {};
             console.log(email);
-            let user = await UsersDAO.getUserById(email);
+            let user = await UsersDAO.getUserByUsername(email);
             if (!user) {
                 res.status(404).json({ error: 'Not found' });
                 return;
@@ -32,7 +32,7 @@ export default class UsersController {
         }
     }
 
-    static async apiGetUserByUsernmae(req, res, next) {
+    static async apiGetUserByUsername(req, res, next) {
         try {
             let username = req.query.username || {};
             console.log(username);

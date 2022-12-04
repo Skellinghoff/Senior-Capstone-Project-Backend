@@ -40,7 +40,7 @@ export default class UsersDAO {
 
     // get user by username and use the users favorites array to get the favorited markers from the markers collection and use the users registered array to get the registered markers from the markers collection
     // return the user and the favorited and registered marker
-    static async apiGetUserByUsername(username) {
+    static async getUserByUsername(username) {
         try {
             const pipeline = [
                 {
