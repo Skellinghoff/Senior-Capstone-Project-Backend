@@ -15,8 +15,13 @@ const port = process.env.PORT || 5000;
 
 const app = express();
 const corsOptions = {
-    origin: 'https://mytechmap.netlify.app',
+    // origin: 'https://mytechmap.netlify.app',
+    // origin: 'localhost:5173',
     credentials: true,
+    optionsSuccessStatus: 200,
+    AccessControlAllowOrigin: "*",
+    // AccessControlAllowCredentials: false,
+
 };
 
 app.use(session({
