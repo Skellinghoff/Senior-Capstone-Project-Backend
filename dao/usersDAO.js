@@ -38,6 +38,28 @@ export default class UsersDAO {
         }
     }
 
+    static async getUsers() {
+        let cursor;
+        try {
+            cursor = await users.find();
+        } catch (e) {
+            console.error(`Unable to issue find command, ${e}`);
+            return { usersList: [], totalNumUsers: 0 };
+        }
+
+        try {
+            const usersList = await cursor.toArray();
+            const totalNumUsers = await users.countDocuments();
+
+            return { usersList, totalNumUsers };
+        } catch (e) {
+            console.error(
+                `Unable to convert cursor to array or problem counting documents, ${e}`
+            );
+            return { usersList: [], totalNumUsers: 0 };
+        }
+    }
+
     // get user by username and use the users favorites array to get the favorited markers from the markers collection and use the users registered array to get the registered markers from the markers collection
     // return the user and the favorited and registered marker
     static async getUserByUsername(username) {
