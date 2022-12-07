@@ -71,44 +71,6 @@ export default class UsersDAO {
                         username: username,
                     },
                 },
-                // {
-                //     $lookup: {
-                //         from: 'markers',
-                //         let: {
-                //             favorites: '$favorites',
-                //             registered: '$registered',
-                //         },
-                //         pipeline: [
-                //             {
-                //                 $match: {
-                //                     $expr: {
-                //                         $in: ['$id', '$$favorites'],
-                //                     },
-                //                 },
-                //             },
-                //         ],
-                //         as: 'favorites',
-                //     },
-                // },
-                // {
-                //     $lookup: {
-                //         from: 'markers',
-                //         let: {
-                //             favorites: '$favorites',
-                //             registered: '$registered',
-                //         },
-                //         pipeline: [
-                //             {
-                //                 $match: {
-                //                     $expr: {
-                //                         $in: ['$id', '$$registered'],
-                //                     },
-                //                 },
-                //             },
-                //         ],
-                //         as: 'registered',
-                //     },
-                // },
             ];
             return await users.aggregate(pipeline).next();
         } catch (err) {
